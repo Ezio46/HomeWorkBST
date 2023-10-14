@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <vector>
 #include <chrono>
 using namespace std;
@@ -33,7 +33,7 @@ public:
             Add(a);
     }
 
-    // Добавление элемента
+    // Р”РѕР±Р°РІР»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
     Node* Add(Node* node, int key) {
         if (node == nullptr)
             return new Node(key);
@@ -44,18 +44,18 @@ public:
         return node;
     }
 
-    // Поиск элемента
+    // РџРѕРёСЃРє СЌР»РµРјРµРЅС‚Р°
     bool Search(int key) {
         return Search(root, key);
     }
 
-    // Удаление элемента
+    // РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
     void Remove(int key) {
         root = Remove(root, key);
     }
 
 private:
-    // Поиск элемента
+    // РџРѕРёСЃРє СЌР»РµРјРµРЅС‚Р°
     bool Search(Node* node, int key) {
         if (node == nullptr)
             return false;
@@ -66,7 +66,7 @@ private:
         return Search(node->right, key);
     }
 
-    // Удаление элемента
+    // РЈРґР°Р»РµРЅРёРµ СЌР»РµРјРµРЅС‚Р°
     Node* Remove(Node* node, int key) {
         if (node == nullptr)
             return node;
@@ -94,7 +94,7 @@ private:
         return node;
     }
 
-    // Поиск минимального значения для метода Remove
+    // РџРѕРёСЃРє РјРёРЅРёРјР°Р»СЊРЅРѕРіРѕ Р·РЅР°С‡РµРЅРёСЏ РґР»СЏ РјРµС‚РѕРґР° Remove
     Node* MinValueNode(Node* node) {
         Node* current = node;
         while (current && current->left != nullptr)
@@ -114,19 +114,19 @@ int main() {
         A_random.clear();
         A_sorted.clear();
 
-        // A_random - массив случайных данных
-        // A_sorted - массив данных, упорядоченных по возрастанию
+        // A_random - РјР°СЃСЃРёРІ СЃР»СѓС‡Р°Р№РЅС‹С… РґР°РЅРЅС‹С…
+        // A_sorted - РјР°СЃСЃРёРІ РґР°РЅРЅС‹С…, СѓРїРѕСЂСЏРґРѕС‡РµРЅРЅС‹С… РїРѕ РІРѕР·СЂР°СЃС‚Р°РЅРёСЋ
         for (int i = 0; i < N; i++) {
             A_random.push_back(rand() % N);
             A_sorted.push_back(i);
         }
 
-        // Создание двух деревьев
+        // РЎРѕР·РґР°РЅРёРµ РґРІСѓС… РґРµСЂРµРІСЊРµРІ
         BST bst_random, bst_sorted;
 
         double time_sort_random = 0, time_sort_sorted = 0, time_search = 0, time_remove = 0;
 
-        // Время сортировки случайных данных
+        // Р’СЂРµРјСЏ СЃРѕСЂС‚РёСЂРѕРІРєРё СЃР»СѓС‡Р°Р№РЅС‹С… РґР°РЅРЅС‹С…
         auto start = chrono::high_resolution_clock::now();
 
         bst_random.BSTSort(A_random);
@@ -134,7 +134,7 @@ int main() {
         auto end = chrono::high_resolution_clock::now();
         time_sort_random = chrono::duration_cast<chrono::microseconds>(end - start).count();
 
-        // Время сортировки упорядоченных данных
+        // Р’СЂРµРјСЏ СЃРѕСЂС‚РёСЂРѕРІРєРё СѓРїРѕСЂСЏРґРѕС‡РµРЅРЅС‹С… РґР°РЅРЅС‹С…
         start = chrono::high_resolution_clock::now();
 
         bst_sorted.BSTSort(A_sorted);
@@ -145,12 +145,12 @@ int main() {
         int num_elements_to_search_remove = N / 10;
         vector<int> elements_to_search_remove;
 
-        // Генерация случайных элементов для Search и Remove
+        // Р“РµРЅРµСЂР°С†РёСЏ СЃР»СѓС‡Р°Р№РЅС‹С… СЌР»РµРјРµРЅС‚РѕРІ РґР»СЏ Search Рё Remove
         for (int i = 0; i < num_elements_to_search_remove; i++) {
             elements_to_search_remove.push_back(rand() % N);
         }
 
-        // Время поиска элементов
+        // Р’СЂРµРјСЏ РїРѕРёСЃРєР° СЌР»РµРјРµРЅС‚РѕРІ
         start = chrono::high_resolution_clock::now();
 
         for (int key : elements_to_search_remove) {
@@ -161,7 +161,7 @@ int main() {
         time_search = chrono::duration_cast<chrono::microseconds>(end - start).count();
 
 
-        // Время удаления элементов
+        // Р’СЂРµРјСЏ СѓРґР°Р»РµРЅРёСЏ СЌР»РµРјРµРЅС‚РѕРІ
         start = chrono::high_resolution_clock::now();
 
         for (int key : elements_to_search_remove) {
