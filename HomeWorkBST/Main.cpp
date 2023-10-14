@@ -124,7 +124,7 @@ int main() {
         // Создание двух деревьев
         BST bst_random, bst_sorted;
 
-        double time_sort_random = 0, time_sort_sorted = 0, time_search = 0, time_remove = 0;
+        double time_sort_random = 0, time_sort_sorted = 0, time_search_random = 0, time_search_sorted = 0, time_remove_random = 0, time_remove_sorted = 0;
 
         // Время сортировки случайных данных
         auto start = chrono::high_resolution_clock::now();
@@ -150,7 +150,7 @@ int main() {
             elements_to_search_remove.push_back(rand() % N);
         }
 
-        // Время поиска элементов
+        // Время поиска элементов в случайном дереве
         start = chrono::high_resolution_clock::now();
 
         for (int key : elements_to_search_remove) {
@@ -158,10 +158,20 @@ int main() {
         }
 
         end = chrono::high_resolution_clock::now();
-        time_search = chrono::duration_cast<chrono::microseconds>(end - start).count();
+        time_search_random = chrono::duration_cast<chrono::microseconds>(end - start).count();
+
+        // Время поиска элементов в случайном дереве
+        start = chrono::high_resolution_clock::now();
+
+        for (int key : elements_to_search_remove) {
+            bst_sorted.Search(key);
+        }
+
+        end = chrono::high_resolution_clock::now();
+        time_search_sorted = chrono::duration_cast<chrono::microseconds>(end - start).count();
 
 
-        // Время удаления элементов
+        // Время удаления элементов в случайном дереве
         start = chrono::high_resolution_clock::now();
 
         for (int key : elements_to_search_remove) {
@@ -169,9 +179,20 @@ int main() {
         }
 
         end = chrono::high_resolution_clock::now();
-        time_remove = chrono::duration_cast<chrono::microseconds>(end - start).count();
+        time_remove_random = chrono::duration_cast<chrono::microseconds>(end - start).count();
 
-        cout << "N = " << N << ", Random Sort Time: " << time_sort_random << " mcs, Sorted Sort Time: " << time_sort_sorted << " mcs, Search Time: " << time_search << " mcs, Remove Time: " << time_remove << " mcs" << endl;
+        // Время удаления элементов в случайном дереве
+        start = chrono::high_resolution_clock::now();
+
+        for (int key : elements_to_search_remove) {
+            bst_sorted.Remove(key);
+        }
+
+        end = chrono::high_resolution_clock::now();
+        time_remove_sorted = chrono::duration_cast<chrono::microseconds>(end - start).count();
+
+
+        cout << "N = " << N << ", Random Sort Time: " << time_sort_random << " mcs, Sorted Sort Time: " << time_sort_sorted << " mcs, Search Random Time: " << time_search_random << " mcs, Search Sorted Time: " << time_search_sorted << " mcs, Remove Random Time: " << time_remove_random << " mcs, Remove Sorted Time: " << time_remove_sorted << " mcs" << endl;
     }
 
     return 0;
